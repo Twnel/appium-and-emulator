@@ -9,6 +9,11 @@ RUN apt-get install -y openjdk-7-jre-headless lib32z1 lib32ncurses5 lib32bz2-1.0
 RUN apt-get -y install software-properties-common
 RUN add-apt-repository ppa:chris-lea/node.js
 RUN apt-get -y install nodejs
+RUN apt-get install -y python-setuptools python-dev build-essential
+
+RUN easy_install supervisor pip
+ADD requirements.txt ./
+RUN pip install -r requirements.txt
 
 #create user
 RUN useradd -m -s /bin/bash automator

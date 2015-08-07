@@ -18,6 +18,9 @@ RUN pip install -r requirements.txt
 
 #create user
 RUN useradd -m -s /bin/bash automator
+#RUN echo "automator:automator" | chpasswd && adduser automator sudo
+RUN echo 'automator ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
+    passwd automator -d
 USER automator
     
 # Main Android SDK in user dir
